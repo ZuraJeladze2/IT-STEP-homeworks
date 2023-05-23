@@ -1,0 +1,24 @@
+.div-wrapper {
+    display: flex;
+    margin-top: 40px;
+    justify-content: center;
+    align-items: center;
+}
+.yellow-div {
+    width: 80vw;
+    height: 40vh;
+    background: yellow;
+}
+.btn-wrapper{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    padding: 50px 0;
+}
+/* .btn-wrapper button {
+    width: 100px;
+    height: 50px;
+    border-radius: 8px;
+} */

@@ -1,0 +1,11 @@
+<div class="container row justify-content-center">
+    <div class="card" style="width: 25rem;">
+        <img [src]="products[index]?.thumbnail" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h4>${{products[index]?.price}}</h4>
+          <h5 class="card-title">{{products[index]?.title}}</h5>
+          <p class="card-text">{{products[index]?.description}}</p>
+          <a class="btn btn-secondary" routerLink="../">Go Back</a>
+        </div>
+      </div>
+</div>

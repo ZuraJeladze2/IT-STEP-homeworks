@@ -1,0 +1,16 @@
+<button class="btn-sidebar" (click)="sidebar()">Click me</button>
+<div class="backdrop" [class.darken]="!isOpen">
+    <div class="sidebar" [class.hide]="isOpen">
+        <div class="sidebar-header">
+        <h1>Sidebar</h1>
+    </div>
+    <div class="sidebar-body">
+        <ul>
+            <li><h2 class="sidebar-item">Item</h2></li>
+            <li><h2 class="sidebar-item">Item</h2></li>
+            <li><h2 class="sidebar-item">Item</h2></li>
+            <li><h2 class="sidebar-item">Item</h2></li>
+        </ul>
+    </div>
+</div>
+</div>
