@@ -1,0 +1,25 @@
+<form [formGroup]="myForm" (ngSubmit)="submit()">
+    <input type="text" formControlName="productName" placeholder="product Name"> <br><br>
+    <input type="text" formControlName="productDescription" placeholder="product Description"> <br><br>
+    <input type="text" formControlName="productImage" placeholder="product Image"> <br><br>
+    <input type="text" formControlName="productPrice" placeholder="product Price"> <br><br>
+    <input type="submit" value="submit">
+</form>
+<br>
+<button (click)="getProducts()">Get Products</button>
+<br><br>
+<button (click)="removeProduct()">Remove Products</button>
+
+<div class="container">
+    <div class="card" *ngFor="let product of productsArray">
+        <div class="card-header"></div>
+        <div class="card-body">
+            <div class="card-image">
+                <img [src]="product.productImage" alt="product image">
+            </div>
+            <div class="card-title"> {{product.productName}} </div>
+            <div class="card-description"> {{product.productDescription}} </div>
+            <div class="card-price"> {{product.productPrice}} </div>
+        </div>
+    </div>
+</div>
