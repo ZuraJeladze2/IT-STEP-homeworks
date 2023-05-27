@@ -1,0 +1,16 @@
+<h2 class="mt">choice category</h2>
+<div class="choice-categories f-center mt">
+    <div class="choice-category" *ngFor="let category of categoriesArray">
+        <div class="icon-wrapper f-center">
+            <img [src]="category.icon" alt="">
+        </div>
+            <h5 class="category-name">
+                {{category.name}}
+            </h5>
+    </div>
+    
+    <!-- <div class="choice-category" *ngFor="let category of categories"></div> -->
+</div>
+
+<!-- chamosashleli kategoriebi (others) -->
+<app-other-categories></app-other-categories>
