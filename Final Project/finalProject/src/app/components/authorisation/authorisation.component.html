@@ -1,0 +1,27 @@
+<div class="wrapper f-center-col">
+    <h2 *ngIf="!signInModal && !signUpModal">sign in and registration</h2>
+    <button class="signIn" (click)="signInForm()" *ngIf="!signInModal && !signUpModal">Sign in</button>
+    <button class="signUp" (click)="signUpForm()" *ngIf="!signInModal && !signUpModal">Sign up</button>
+
+
+<form [formGroup]="authForm" class="f-center-col" (ngSubmit)="onSignIn(authForm)" *ngIf="signInModal">
+    <h2>Sign In</h2>
+    <input type="email" formControlName="email" placeholder="Enter E-mail" >
+    <input type="password" formControlName="password" placeholder="Enter password" >
+    <div class="btn-wrapper f-center">
+        <button (click)="toBack()">Back</button>
+        <button tyoe="submit">Sign In</button>
+    </div>
+</form>
+
+<form [formGroup]="authForm" class="f-center-col" (ngSubmit)="onSignIn(authForm)" *ngIf="signUpModal">
+    <h2>Sign Up</h2>
+    <input type="email" formControlName="email" placeholder="Enter E-mail" >
+    <input type="password" formControlName="password" placeholder="Enter password" >
+    <div class="btn-wrapper f-center">
+        <button (click)="toBack()">Back</button>
+        <button tyoe="submit">Sign Up</button>
+    </div>
+</form>
+
+</div>

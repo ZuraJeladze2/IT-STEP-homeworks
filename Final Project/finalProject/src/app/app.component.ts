@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { AdminComponent } from './components/admin/admin.component';
+
+
 
 @Component({
   selector: 'app-root',

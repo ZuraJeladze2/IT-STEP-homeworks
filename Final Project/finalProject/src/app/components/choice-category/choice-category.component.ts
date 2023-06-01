@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { HTTPModuleService } from 'src/app/services/httpmodule.service';
 
@@ -7,19 +8,29 @@ import { HTTPModuleService } from 'src/app/services/httpmodule.service';
   styleUrls: ['./choice-category.component.scss']
 })
 export class ChoiceCategoryComponent {
-  constructor(private http:HTTPModuleService){}
-  categoriesArray:any = [];
-  ngOnInit(){
-    this.http.getAllCategories().subscribe(res => {
-      this.categoriesArray = res;
-      this.categoriesArray[0].icon = '../../../assets/categories/new.png'
-      this.categoriesArray[1].icon = '../../../assets/categories/laptop.png'
-      this.categoriesArray[2].icon = '../../../assets/categories/furniture.png'
-      this.categoriesArray[3].icon = '../../../assets/categories/shoes.jpg'
-      this.categoriesArray[4].icon = '../../../assets/categories/others.jpg'
-      console.log(res);
-      
-    })
-  }
-  
+  constructor(private http:HttpClient, private myService: HTTPModuleService){}
+
+  categoriesArray = [
+    {
+      title: 'new',
+      icon: '../../../assets/categories/new.png'
+    },
+    {
+      title: 'shoes',
+      icon: '../../../assets/categories/shoes.jpg'
+    },
+    {
+      title: 'furniture',
+      icon: '../../../assets/categories/furniture.png'
+    },
+    {
+      title: 'electronics',
+      icon: '../../../assets/categories/laptop.png'
+    },
+    {
+      title: 'others',
+      icon: '../../../assets/categories/others.jpg'
+    }
+  ];
+
 }

@@ -5,9 +5,11 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class HTTPModuleService {
-  productsDBurl = 'https://api.escuelajs.co/api/v1/products/'
-  categoriesDBurl = 'https://api.escuelajs.co/api/v1/categories/'
+  productsDBurl = 'https://firstdb-e6cd9-default-rtdb.europe-west1.firebasedatabase.app/products.json'
+  categoriesDBurl = 'https://firstdb-e6cd9-default-rtdb.europe-west1.firebasedatabase.app/categories.json'
+  myDB:any;
   constructor(private http: HttpClient) { }
 
   getAllProducts(): Observable<any[]> {
@@ -16,4 +18,10 @@ export class HTTPModuleService {
   getAllCategories(): Observable<any[]>{
     return this.http.get<any[]>(this.categoriesDBurl);
   }
+
+  assignToMyDB() {
+    this.http.get(this.productsDBurl).subscribe(res => {
+      console.log(res);
+      this.myDB = res;
+    });}
 }
