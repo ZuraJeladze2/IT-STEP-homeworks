@@ -1,1 +1,23 @@
-<p>product works!</p>
+<h1 class="mt-xl" *ngIf="productId && productsArray">{{productsArray[productId].title}}</h1>
+
+<div class="product-container f-center" *ngIf="productId && productsArray">
+    <div class="img-wrapper">
+        <img [src]="productsArray[productId].images[0]" alt="">
+    </div>
+    <div class="product-info f-center-col">
+        <!-- <h2 class="product-title text-center"></h2> -->
+        <h4 class="product-category">Cateory: {{productsArray[productId].category.name}}</h4>
+        <h3 class="product-price">Price: ${{productsArray[productId].price}}</h3>
+        <p class="product-description">{{productsArray[productId].description}}</p>
+        <button>
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front text">Buy Now</span>
+        </button>
+    </div>
+
+
+
+</div>
+
+<app-only4u></app-only4u>
