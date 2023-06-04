@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 import {FormGroup, FormControl, ReactiveFormsModule, Validators} from '@angular/forms'
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-authorisation',
@@ -8,12 +9,14 @@ import {FormGroup, FormControl, ReactiveFormsModule, Validators} from '@angular/
   styleUrls: ['./authorisation.component.scss']
 })
 export class AuthorisationComponent {
-  constructor(private authService: FirebaseAuthService){}
+  constructor(private authService: FirebaseAuthService, private route: Router){}
 
   isSignedIn = false;
 
   signInModal:boolean = false;
   signUpModal:boolean = false;
+
+  authError = false;
   
   authForm = new FormGroup({
     email: new FormControl('', Validators.required),
@@ -25,18 +28,30 @@ export class AuthorisationComponent {
   }
 
   async onSignUp(formVal: any){
-    await this.authService.signUp(formVal.email, formVal.password);
+    await this.authService.signUp(formVal.value.email, formVal.value.password)
 
-    if(this.authService.isLoggedIn)
-    this.isSignedIn = true;
+    if(this.authService.isLoggedIn){
+      this.isSignedIn = true;
+      
+    }else{
+      this.authError = true;
+    }
   }
 
   
   async onSignIn(formVal: any){
-    await this.authService.signIn(formVal.email, formVal.password);
+    await this.authService.signIn(formVal.value.email, formVal.value.password)
     
-    if(this.authService.isLoggedIn)
-    this.isSignedIn = true;
+    if(this.authService.isLoggedIn){
+      this.isSignedIn = true;
+      if(formVal.value.email == 'z.jeladze22@itstep.ge'){
+        this.route.navigate(['/admin']);
+        console.log('admin!');
+        
+      }
+    }else{
+      this.authError = true;
+    }
   }
 
   signInForm(){

@@ -1,37 +1,56 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth'
-import { FormControl } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseAuthService {
-
   isLoggedIn = false;
-  constructor(private Auth: AngularFireAuth) { }
+  userEmail: string | null | undefined;
+  authError = false;
 
-  async signUp(email:any, password:any){
-    await this.Auth.signInWithEmailAndPassword(email, password)
-                  .then(response => {
-                    this.isLoggedIn = true;
-                    console.log(response)
-                  })
-                  .catch(error => console.log(error))
+  constructor(private route:Router, private auth: AngularFireAuth) { }
+
+  async signUp(email: any, password: any) {
+    console.log('hi \n',email, password)
+    await this.auth.createUserWithEmailAndPassword(email, password)
+      .then(response => {
+        this.isLoggedIn = true;
+        console.warn(response);
+        this.route.navigate([''])
+      })
+      .catch(error => {
+        console.log(error)});
+        this.authError = true;
+        
+    }
+    
+    async signIn(email: any, password: any) {
+      await this.auth.signInWithEmailAndPassword(email, password)
+      .then(response => {
+        this.isLoggedIn = true;
+        console.warn(response);
+        this.userEmail = response.user?.email;
+        console.log(`Email is ${this.userEmail}`);
+        if(email.toLowerCase() == 'z.jeladze22@gmail.com'){
+          this.route.navigate(['/admin']);
+        }else{
+          this.route.navigate([''])
+        }
+      })
+      .catch(error => {
+        console.log(error)});
+        this.authError = true;
+        
   }
-  async signIn(email:any, password:any){
-    await this.Auth.createUserWithEmailAndPassword(email, password)
-                  .then(response => {
-                    this.isLoggedIn = true;
-                    console.log(response)
-                  })
-                  .catch(error => console.log(error))
-  }
-  async logOut(){
-    await this.Auth.signOut()
-                  .then(response => {
-                    this.isLoggedIn = false;
-                    console.log(response)
-                  })
-                  .catch(error => console.error(error))
+
+  async logOut() {
+    await this.auth.signOut()
+      .then(response => {
+        this.isLoggedIn = false;
+        console.log(response);
+      })
+      .catch(error => console.error(error));
   }
 }

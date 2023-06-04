@@ -17,6 +17,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { AuthorisationComponent } from './components/authorisation/authorisation.component';
 import { AngularFireModule } from '@angular/fire/compat';
 
+
 @NgModule({
   declarations: [
     AppComponent,

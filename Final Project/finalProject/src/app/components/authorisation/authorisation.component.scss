@@ -7,6 +7,14 @@
     padding: 30px;
     margin: 110px auto;
 
+
+    .errorMessage{
+        position: absolute;
+        left: 10px;
+        bottom: 0;
+        color: #f00;
+    }
+    
     h2{
         text-align: center;
         text-transform: uppercase;

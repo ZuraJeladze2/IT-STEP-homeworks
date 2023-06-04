@@ -1,8 +1,8 @@
 <h2 class="mt">today is only for you</h2>
-<!-- <br>
+<br>
 <button (click)="productsArrayManipulations()" style="border: 2px solid black; margin: 20px">Action!</button>
-<br> -->
-<a class="toProducts mt" routerLink="products">
+<br>
+<a class="toProducts" style="float:right" routerLink="products">
     <button>
         <p>Products</p>
         <svg stroke-width="4" stroke="currentColor" viewBox="0 0 24 24" fill="none" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg">
@@ -15,7 +15,7 @@
 
 
     <!-- id unda chavuwero da mere ma aidis gamoviyeneb routeshi -->
-    <div class="only4u-card" *ngFor="let card of shortProductsArray">
+    <div class="only4u-card" [id]="card.id" *ngFor="let card of shortProductsArray">
         <div class="img-wrapper">
             <img [src]="card.category.image" alt="Laptop">
         </div>
@@ -35,7 +35,7 @@
                 </div>
                 4.7
             </div>
-            <a routerLink="" class="check-out">
+            <a [routerLink]="['/products', card.id]" (click)="clearRoute()" class="check-out">
                 <button class="learn-more">
                     <span class="circle" aria-hidden="true">
                     <span class="icon arrow"></span>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HTTPModuleService } from "../../services/httpmodule.service";
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-only4u',
@@ -10,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 export class Only4uComponent {
-  constructor(private myService: HTTPModuleService, private http: HttpClient){}
+  constructor(private myService: HTTPModuleService, private http: HttpClient, private route:Router){}
 
   shortProductsArray:any;
   fullProductsArray: any;
@@ -31,6 +32,12 @@ export class Only4uComponent {
     )
   }
 
+  clearRoute(){
+    this.route.navigate([])
+    this.route.navigate(['/products'])
+  }
+  
+
   productsArrayManipulations(){
     this.updatedProductsArray = this.fullProductsArray.map((element: { category: {name:string} }) => {
       if(element.category.name === 'AZ'){
@@ -41,39 +48,10 @@ export class Only4uComponent {
     })
     console.log(this.updatedProductsArray);
     
-    // this.http.post(this.myService.productsDBurl, this.updatedProductsArray).subscribe(res => console.log(res))
+    this.http.post(this.myService.productsDBurl, this.updatedProductsArray).subscribe(res => console.log(res))
     
     console.log(this.fullProductsArray)
   }
-  async productsArrayManipulationsGPT(){
-  this.updatedProductsArray = await Promise.all(this.fullProductsArray.map(async (element: { category: {name:string} }) => {
-    if(element.category.name === 'AZ'){
-      element.category.name = 'New';
-    }
-    console.log(element.category.name);
-    return element; // Return the updated element
-  }));  
-  console.log(this.updatedProductsArray);
-  
-  // this.http.post(this.myService.productsDBurl, this.updatedProductsArray).subscribe(res => console.log(res))
-  
-  console.log(this.fullProductsArray);
-}
-productsArrayManipulations2() {
-  this.updatedProductsArray = this.fullProductsArray.map((element:any) => {
-    if(element.category.name === 'AZ'){
-      element.category.name = 'New';
-    }
-    console.log(element.category.name);
-    return element; // Return the updated element
-  });
-  
-  console.log(this.updatedProductsArray);
-  
-  // this.http.post(this.myService.productsDBurl, this.updatedProductsArray).subscribe(res => console.log(res))
-  
-  console.log(this.fullProductsArray);
-}
 
 
 

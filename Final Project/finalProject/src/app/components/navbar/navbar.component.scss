@@ -7,6 +7,7 @@
     top: 0;
     box-shadow: 0 2px 10px 0;
     background-color: #fff;
+    color: #000;
     // backdrop-filter: blur(100px);
     // background: linear-gradient(180deg, rgba(255, 166, 0, 0.278), rgba(255, 166, 0, 0.631));
     font-size: 1.2rem;
@@ -20,14 +21,17 @@
         display: flex;
         justify-content: space-between;
         flex-flow: row nowrap;
+
         &-links{
             display: flex;
             justify-content: center;
             gap: 25px;
             flex-flow: row nowrap;
-        }
-        &-link{
-            text-transform: uppercase;
+
+            a{
+                color: inherit;
+                text-transform: uppercase;
+            }
         }
     }
 }
