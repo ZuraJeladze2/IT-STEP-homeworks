@@ -1,11 +1,11 @@
 <h1 class="mt-xl text-center">Here is the list of all the products!</h1>
+<!-- <h1 class="mt-xl" *ngIf="isLoading">Loading</h1> -->
 <div class="products-container f-center mt">
 
 
-    <!-- id unda chavuwero da mere ma aidis gamoviyeneb routeshi -->
     <div class="only4u-card" *ngFor="let card of fullProductsArray">
         <div class="img-wrapper">
-            <img [src]="card.category.image" alt="Laptop">
+            <img [src]="card.images[0]" alt="product image">
         </div>
         <div class="item-info">
             <h5 class="item-category">

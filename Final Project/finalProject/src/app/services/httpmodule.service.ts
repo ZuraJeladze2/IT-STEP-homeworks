@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 
 export class HTTPModuleService {
   productsDBurl = 'https://firstdb-e6cd9-default-rtdb.europe-west1.firebasedatabase.app/products.json'
+  ProductsDBArray = 'https://firstdb-e6cd9-default-rtdb.europe-west1.firebasedatabase.app/products/-NWw0S4q18wC_VcxNF3v.json'
   categoriesDBurl = 'https://firstdb-e6cd9-default-rtdb.europe-west1.firebasedatabase.app/categories.json'
   myDB:any;
   constructor(private http: HttpClient) { }

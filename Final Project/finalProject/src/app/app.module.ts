@@ -16,6 +16,7 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
 import { AuthorisationComponent } from './components/authorisation/authorisation.component';
 import { AngularFireModule } from '@angular/fire/compat';
+import { RouterLinkActive, RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -38,6 +39,8 @@ import { AngularFireModule } from '@angular/fire/compat';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    RouterModule,
+    RouterLinkActive,
     AngularFireModule.initializeApp({
       apiKey: 'AIzaSyCfonsqcXbiSx0c2STLkdC9X_K1G92m_PM',
       authDomain: 'firstdb-e6cd9.firebaseapp.com',

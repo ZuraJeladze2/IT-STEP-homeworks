@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { HTTPModuleService } from "../../services/httpmodule.service";
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -13,18 +13,37 @@ import { Router } from '@angular/router';
 export class Only4uComponent {
   constructor(private myService: HTTPModuleService, private http: HttpClient, private route:Router){}
 
-  shortProductsArray:any;
-  fullProductsArray: any;
-  updatedProductsArray:any;
+  shortProductsArray:any[] = [];
+  fullProductsArray: any[] = [];
+  updatedProductsArray:any[] = [];
 
+
+  @Output() productChanged = new EventEmitter<string>();
+
+  handleChange(id:any){
+    this.productChanged.emit(id);
+  }
+
+  
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  
   ngOnInit(){
     this.myService.getAllProducts().subscribe(res => {
       for (const key in res) {
         if (Object.prototype.hasOwnProperty.call(res, key)) {
           const element = res[key];
           console.log(element);
-          this.fullProductsArray = element;
-          this.shortProductsArray= element.slice(1, 9)          
+          // this.fullProductsArray = element;
+          // this.shortProductsArray= element.slice(1, 9);
+          for (const product of element) {
+            if (product) {
+              this.fullProductsArray.push(product)
+              this.shortProductsArray = this.fullProductsArray.slice(0,10)
+            }
+          }       
         }
       }
       
@@ -33,7 +52,6 @@ export class Only4uComponent {
   }
 
   clearRoute(){
-    this.route.navigate([])
     this.route.navigate(['/products'])
   }
   
