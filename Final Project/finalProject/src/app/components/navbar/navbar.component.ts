@@ -10,12 +10,13 @@ import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 export class NavbarComponent {
 constructor(private route:Router, private authService: FirebaseAuthService){}
 
-  loggedIn = false;
+  loggedIn: boolean|string|null = localStorage.getItem('isLoggedIn');
   userEmail: string | null | undefined;
 
   ngOnInit(){
       this.loggedIn = this.authService.isLoggedIn;
       this.userEmail = this.authService.userEmail;
+      console.log(this.userEmail);
   }
 
   toProducts(){
@@ -24,5 +25,7 @@ constructor(private route:Router, private authService: FirebaseAuthService){}
 
   logOut(){
     this.authService.logOut();
+    this.loggedIn = false;
+    localStorage.removeItem('isLoggedIn')
   }
 }
